@@ -17,7 +17,7 @@ function Todoform() {
     };
 
     const suprimerTache = (index) => {
-        const newListTaches = listTaches.filter((_, i) => i !== index);
+        const newListTaches = listTaches.filter((_, i) => i !== index - 1);
         setListTaches(newListTaches);
         setIndexSelectionne(null);
         console.log("Tâche supprimée à l'index :", index);
@@ -46,10 +46,10 @@ function Todoform() {
                             min="1"
                             max={listTaches.length}
                             placeholder="Index de la tâche à supprimer"
-                            value={indexSelectionne - 1}
+                            value={indexSelectionne}
                             onChange={(e) => setIndexSelectionne(parseInt(e.target.value) || null)}
                         />  
-                        <button onClick={() => suprimerTache(indexSelectionne)} disabled={indexSelectionne === null}>
+                        <button onClick={() => suprimerTache(indexSelectionne)} disabled={listTaches.length === 0 || indexSelectionne === null || indexSelectionne < 0 || indexSelectionne >= listTaches.length}>
                             supprimer la taches
                         </button>
                     </div>
